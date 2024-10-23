@@ -1,12 +1,16 @@
-﻿// RANDY.cpp : Defines the entry point for the application.
-//
-
+﻿// main.cpp
 #include <iostream>
+#include "includes/Rectangle.h"
 
-using namespace std;
+int main() {
+    Rectangle rect;
 
-int main()
-{
-	cout << "Hello CMake." << endl;
-	return 0;
+    // Set rectangle dimensions
+    rect.setWidth(5.0);
+    rect.setHeight(10.0);
+
+    // Output rectangle area
+    std::cout << "Rectangle area: " << rect.area() << std::endl;
+
+    return 0;
 }
