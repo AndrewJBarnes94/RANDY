@@ -1,29 +1,25 @@
 ﻿// main.cpp
 #include <iostream>
-#include "includes/Physics/Uncertainty.h"
+#include "includes/Physics/Kinematics.h"
 
 int main() {
-    double value = 5.0;
-    double uncertainty = 0.4;
+    Physics::Kinematics kinematics;
 
-    // Calculate percent uncertainty
-    double percentUncertainty = Uncertainty::calculatePercentUncertainty(uncertainty, value);
-    std::cout << "Percent Uncertainty: " << percentUncertainty << "%" << std::endl;
+    double xf = 100;
+    double x0 = 26;
+    
+    double tf = 60;
+    double t0 = 5;
 
-    // Round a value to significant figures
-    double roundedValue = Uncertainty::roundToSignificantFigures(12345.6789, 3);
-    std::cout << "Rounded Value: " << roundedValue << std::endl;
+    double displacement = kinematics.displacement(xf, x0);
+    double elapsedTime = kinematics.elapsedTime(tf, t0);
+    double averageVelocity1 = kinematics.averageVelocity(xf, x0, tf, t0);
+    double averageVelocity2 = kinematics.averageVelocity(displacement, elapsedTime);
 
-    // Calculate uncertainty in multiplication or division
-    std::map<double, double> combinedUncertaintyMult = Uncertainty::calculateUncertaintyMultiplication(5.0, 3.0, 0.2, 0.1, "unit");
-    std::cout << "Combined Values and Uncertainty (Multiplication/Division) ";
-    for (const auto& pair : combinedUncertaintyMult) {
-        std::cout << "Value: " << pair.first << ", Uncertainty: " << pair.second << std::endl;
-    }
-
-    // Calculate uncertainty in addition or subtraction
-    double combinedUncertaintyAdd = Uncertainty::calculateUncertaintyAddition(0.2, 0.3);
-    std::cout << "Combined Uncertainty (Addition/Subtraction): " << combinedUncertaintyAdd << std::endl;
+    std::cout << "Displacement: " << displacement << std::endl;
+    std::cout << "Elapsed Time: " << elapsedTime << std::endl;
+    std::cout << "Average Veocity1: " << averageVelocity1 << std::endl;
+    std::cout << "Average Velocity2: " << averageVelocity2 << std::endl;
 
     return 0;
 }
